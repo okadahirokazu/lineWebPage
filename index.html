@@ -1,13 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
-	<title>lineブラウザ画面</title>
-	<link rel="shortcut icon" href="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>カテゴリ選択</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="">
+<!-- OnsenUI・AngularJS -->
+<script src="assets/angularjs/angular.js"></script>
+<link rel="stylesheet" href="assets/onsenui/onsenui.css"/>
+<link rel="stylesheet" href="assets/onsenui/onsen-css-components.css"/>
+<script src="assets/onsenui/onsenui.min.js"></script>
+<script src="assets/onsenui/angular-onsenui.min.js"></script>
+<!-- その他ライブラリ -->
+<link rel="stylesheet" href="assets/animatecss/animate.css">
+<link rel="stylesheet" href="assets/semanticuicss/semantic.min.css">
+<script type="text/javascript" src="assets/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="assets/semanticuicss/semantic.min.js"></script>
+<!-- 共通処理・スタイル -->
+<link rel="stylesheet" href="app.css">
+<script src="app.js"></script>
+<!-- 個別処理・スタイル -->
+<!-- ページ -->
+<link rel="stylesheet" href="views/pageMain.css">
+<script type="text/javascript" src="views/pageMain.js"></script>
 </head>
 <body>
-	てすと
+	<ons-navigator var="navi" page="views/pageMain.html"></ons-navigator>
+	<script type="text/javascript">
+		// D&D時、アプリケーションのHTMLとファイルが差し替わらないようにする
+		document.ondragover = document.ondrop = function(e) {
+		  e.preventDefault();
+		  return false;
+		};
+		// タブラベル情報をツールバーにセット
+		document.addEventListener('prechange', function(event) {
+			document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+		});
+		// サイドバー切り替え
+		window.fn = {};
+		window.fn.open = function() {
+			var menu = document.getElementById('menu');
+			menu.open();
+		};
+		window.fn.load = function(page) {
+			var content = document.getElementById('content');
+			var menu = document.getElementById('menu');
+			content.load(page)
+			.then(menu.close.bind(menu));
+		};
+		// アプリ開始
+		window.onload = app.init;
+	</script>
 </body>
 </html>
