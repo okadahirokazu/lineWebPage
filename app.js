@@ -1,14 +1,5 @@
 // AngularJSアプリオブジェクト（全ページからアクセス可能）
 var app = angular.module('myApp', ['onsen.directives']);
-// Nodeモジュール
-
-// 独自モジュール
-var util = {
-	array: require('./utils/arrayUtil.js'),
-	date: require('./utils/dateUtil.js'),
-	num: require('./utils/numUtil.js'),
-	string: require('./utils/stringUtil.js'),
-};
 
 // アプリ初期処理
 app.init = function(){
