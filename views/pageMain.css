@@ -1,0 +1,4 @@
+.checkbox-orange[type="checkbox"].filled-in:checked + label:after{
+	border: 2px solid #34A090;
+	background-color: #009F00;
+}
