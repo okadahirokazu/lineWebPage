@@ -1,9 +1,12 @@
 <ons-page id="main" ng-controller="pageMainController">
 	<div class="contents" align="center">
-		<div class="" ng-repeat="category in categoryList track by $index">
-			<p>{{category}}</p>
-			<!-- <input type="checkbox" class="filled-in" id="test5" />
-			<label for="test5">Red</label> -->
+		<div class="category" ng-repeat="category in categoryList track by $index">
+			<input type="checkbox" class="filled-in" id="{{category.id}}" />
+			<label for="{{category.id}}">{{category.label}}</label>
 		</div>
+
+	</div>
+	<div id="footer">
+		<a class="waves-effect waves-light btn-large">このカテゴリ情報を受信する</a>
 	</div>
 </ons-page>

@@ -14,23 +14,44 @@ app.controller('pageMainController', function($scope, $http, $q){
 
 	// Feedlyで設定したカテゴリーを取得
 	function getCategories(){
-		$.ajax({
-			url: 'https://cloud.feedly.com/v3/categories',
-			type: 'GET',
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader('Authorization', 'OAuth ' + feedlyToken);
-			},
-			// OK
-			success: function(data) {
-				console.log(data);
-				for(var i = 0; i < data.length; i++){
-					$scope.categoryList.push(data[i].label)
-				}
-			},
-			// NG
-			error: function (err) {
-				console.log(err);
-			}
-		});
+		// localhost以外のアクセス制限あるから取り敢えずの間はダミーデータを表示
+		var array = [];
+		array.push('AWS');
+		array.push('Marketing');
+		array.push('ガジェット');
+		array.push('大阪');
+		array.push('子育て');
+		array.push('神戸');
+
+		for(var i = 0; i < array.length; i++){
+			var category = {
+				id: i,
+				label: array[i]
+			};
+			$scope.categoryList.push(category);
+		}
+
+
+
+
+
+		// $.ajax({
+		// 	url: 'https://cloud.feedly.com/v3/categories',
+		// 	type: 'GET',
+		// 	beforeSend: function(xhr) {
+		// 		xhr.setRequestHeader('Authorization', 'OAuth ' + feedlyToken);
+		// 	},
+		// 	// OK
+		// 	success: function(data) {
+		// 		console.log(data);
+		// 		for(var i = 0; i < data.length; i++){
+		// 			$scope.categoryList.push(data[i].label)
+		// 		}
+		// 	},
+		// 	// NG
+		// 	error: function (err) {
+		// 		console.log(err);
+		// 	}
+		// });
 	}
 });
